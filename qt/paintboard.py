@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 import sys
-from PyQt5.QtWidgets import QWidget, QApplication
-from PyQt5.QtGui import QPixmap, QPainter, QPen, QColor
-from PyQt5.QtCore import Qt, QPoint, QSize
+from PyQt6.QtWidgets import QWidget, QApplication
+from PyQt6.QtGui import QPixmap, QPainter, QPen, QColor
+from PyQt6.QtCore import Qt, QPoint, QSize
 
 class PaintBoard(QWidget):
     def __init__(self, Parent = None, Size = QSize(320, 240), Fill = QColor(255,255,255,255)):
@@ -14,7 +14,7 @@ class PaintBoard(QWidget):
         self.__size = Size                  # 画板尺寸
         self.__fill = Fill                  # 画板默认填充颜色
 
-        self.__thickness = 18               # 默认画笔粗细
+        self.__thickness = 10               # 默认画笔粗细
         self.__penColor = QColor(0,0,0,255)   # 默认画笔颜色
 
         self.__begin_point = QPoint()
@@ -57,13 +57,13 @@ class PaintBoard(QWidget):
         self.__painter.end()
 
     def mousePressEvent(self, mouseEvent):
-        if mouseEvent.button() == Qt.LeftButton:
+        if mouseEvent.button() == Qt.MouseButton.LeftButton:
             self.__begin_point = mouseEvent.pos()
             self.__end_point = self.__begin_point
             # self.update()
 
     def mouseMoveEvent(self, mouseEvent):
-        if mouseEvent.buttons() == Qt.LeftButton:
+        if mouseEvent.buttons() == Qt.MouseButton.LeftButton:
             self.__end_point = mouseEvent.pos()
 
             # 画入缓冲区
@@ -79,4 +79,4 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     demo = PaintBoard()
     demo.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())

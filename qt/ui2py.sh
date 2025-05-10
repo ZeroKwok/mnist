@@ -1,2 +1,2 @@
 #!/bin/bash
-pyuic5 -o layout.py layout.ui
+pyuic6 -o layout.py layout.ui
